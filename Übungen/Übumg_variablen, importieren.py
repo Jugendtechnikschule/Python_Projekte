@@ -40,6 +40,30 @@ print("\n")
 for i in range(10):
     print(i)
 
+# for-schleife start stop
+for i in range(10, 20):
+    print(i)
+
+# for-schleife start stop schritt
+for i in range(10, 20, 5):
+    print(i)
+
+
+
+
+
+x = 0
+
+
+while x < 50:
+    x += 1
+    print("Endlosschleife", x)
+    
+
+
+
+
+
 print("\n")
 
 

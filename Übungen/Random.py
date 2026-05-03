@@ -1,10 +1,15 @@
 import random
 
+while True:
+    x = random.randint(1, 10)
+    print(x)
 
+    user_input = input("Was ist die Random Zahl: ")
+    print(user_input)
 
-s = random.choice(["Hallo", "Welt", "Python", "Programmieren"])
-print(s)
-x = random.randint(1, 100)
-print(x)
+    y += 2
 
-print(random.randint(1, 100))
+    if int(user_input) == x:
+        print("Richtig!")
+    else:
+        print("Falsch!")
