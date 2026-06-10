@@ -16,8 +16,8 @@ alter = 15
 ist_schule = True
 list = [1, 2, 3, 4, 5]
 randzahl = randint(1, 100)
-
 print("\n")
+list2 = [1, 2, 3, 4, 5]
 
 # ausgabe von variablen
 print(name)
