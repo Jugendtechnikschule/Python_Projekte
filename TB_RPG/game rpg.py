@@ -15,35 +15,24 @@ schleim_hp = 100
 schleim_mana = 100
 enemy_hp = 100
 enemy_mana = 100
+
 # waffen auswahl status
+
 sword = weapons("swort", random.randint(5, 15), 5)
+Langschwert = weapons("Langschwert", random.randint(10, 20), 10)
+#Schild = weapons("Schild", random.randint(5, 10), 15)
+Mage = weapons("Mage", random.randint(15, 25), 5)
+Dolch = weapons("Dolch", random.randint(5, 10), 3)
+Kurtzschwert = weapons("Kurtzschwert", random.randint(5, 10), 7)
+Bogen = weapons("Bogen", random.randint(5, 10), 8)
+Hammer = weapons("Hammer", random.randint(10, 20), 12)
 
-
-
-Langschwert = True
-Schild = False
-Mage = False
-Dolch = False
-Kurtzschwert = False
-Bogen = False
-Hammer = False
-Hammer_eigeschaft = ("stumpf")
-
-wepons = [Langschwert, Schild, Mage, Dolch, Kurtzschwert, Bogen, Hammer]  
 
 # fight status
 ran_away = False
 fighting = False
 
 print("HP:",hp,"mana:",mana,"level:",level)
-geg = 10
-def test(lol):
-  lol = lol + 1
-  print(lol)
-  
-test(geg)
-
-
 
 def wald():
   global user_input
@@ -58,13 +47,13 @@ def wald():
   if user_input == "schleim":
     print("Du kämpfst gegen einen schleim")
     fight()
-  
 def dorf():
   print("Du bist im Dorf")
 def fluss():
   print("Du bist am Fluss")
 def gebirge():
   print("du bist im Gebirge")
+
 def enemy_hp_ramp_up():
   global enemy_hp
   enemy_hp = enemy_hp * 1.10

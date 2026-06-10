@@ -12,3 +12,8 @@ class weapons():
     def unequip(self):
         self.equipped = False
         print(f"You have unequipped {self.name}.")
+    def attack(self):
+        if self.equipped:
+            print(f"You attack with {self.name} for {self.damage} damage.")
+        else:
+            print("You are not equipped with a weapon.")
