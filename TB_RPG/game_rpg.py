@@ -68,7 +68,7 @@ def level_up():
     print("HP:", hp)
     print("Mana:", mana)
 def fight():
-  global hp, mana, xp, enemy_hp, enemy_mana, ran_away, fighting, schleim_hp, equipped_wepon
+  global hp, mana, xp, enemy_hp, enemy_mana, enemy_damage, ran_away, fighting, equipped_wepon, enemy_list
   print("You are fighting an enemy!")
   while hp > 0 and enemy_hp > 0 and not ran_away:
     
@@ -79,19 +79,19 @@ def fight():
         print("What do you want to do?")
         print("1. Attack")
         print("2. Use item")
-        print("3. Run away")
-        choice = input("Enter your choice: ")
+        print("3. Run away\n")
+        choice = input("Enter your choice:\n")
         if choice == "1":
           damage = equipped_wepon.attack()
           enemy_hp -= damage
         elif choice == "2":
           print("Which item do you want to use?")
           print("1. Health Potion")
-          print("2. Mana Potion")
+          print("2. Mana Potion\n")
           item_choice = input("Enter your choice: ")
           if item_choice == "1":
               if hp < 100:
-                  hp += 20
+                  hp += 30
                   print("You used a Health Potion and restored 20 HP!")
               else:
                     print("You already have full HP!")
