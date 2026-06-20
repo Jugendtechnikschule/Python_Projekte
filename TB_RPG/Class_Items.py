@@ -13,18 +13,14 @@ class items:
 class weapons(items):
     """Weapons are a type of item that can be equipped to increase the player's damage output."""
 
-    global equipped_wepon
-
     def __init__(self,name: str, description: str = "", damage: int = 1, weight: int = 0, equipped: bool = False, durability: int = 100):
         super().__init__(name, description, stackable = False, quality = "common")
         self.damage = damage
         self.weight = weight
         self.equipped = equipped
         self.durability = durability
-
-        self.name
-    def equip(self):
-        global equipped_wepon
+        
+    def equip(self, equipped_wepon):
 
         equipped_wepon = self
 
@@ -32,13 +28,7 @@ class weapons(items):
         print(f"You have equipped {self.name}.")
 
         return equipped_wepon
-    
-    def unequip(self):
-        global equipped_wepon
-        
-        self.equipped = False
 
-        print(f"You have unequipped {self.name}.")
     def attack(self):
         if self.equipped:
             print(f"You attack with {self.name} for {self.damage} damage.")
