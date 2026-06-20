@@ -15,17 +15,18 @@ class weapons(items):
 
     global equipped_wepon
 
-    def __init__(self,name: str, description: str = "", damage: int = 0, weight: int = 0, equipped: bool = False, durability: int = 100):
+    def __init__(self,name: str, description: str = "", damage: int = 1, weight: int = 0, equipped: bool = False, durability: int = 100):
         super().__init__(name, description, stackable = False, quality = "common")
         self.damage = damage
         self.weight = weight
         self.equipped = equipped
         self.durability = durability
 
+        self.name
     def equip(self):
         global equipped_wepon
 
-        equipped_wepon = self.name
+        equipped_wepon = self
 
         self.equipped = True
         print(f"You have equipped {self.name}.")
@@ -45,9 +46,4 @@ class weapons(items):
             return self.damage
         else:
             print("You are not equipped with a weapon.")
-           # try:
-          #      print("You are not equipped with a weapon.")
-          #      return 0
-          #  except:
-          #      print("An error occurred while trying to attack.")
-          #      return 0
+            return 0

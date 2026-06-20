@@ -26,8 +26,10 @@ Dolch = weapons("Dolch", "Ein kleiner Dolch", random.randint(5, 10), 3)
 Kurtzschwert = weapons("Kurtzschwert", "Ein kurzes Schwert", random.randint(5, 10), 7)
 Bogen = weapons("Bogen", "Ein langen Bogen", random.randint(5, 10), 8)
 Hammer = weapons("Hammer", "Ein schwerer Hammer", random.randint(10, 20), 12)
-Not_defind_Weapon = weapons("Not defind Weapon", "Ein nicht definierte Waffe", 10)
-equipped_wepon = Not_defind_Weapon.name
+Not_defind_Weapon = weapons("Not defind Weapon", "Ein nicht definierte Waffe")
+equipped_wepon = None
+print(Not_defind_Weapon.name)
+print(Not_defind_Weapon.damage)
 print(Hammer.equip())
 # fight status
 ran_away = False
@@ -70,10 +72,8 @@ def fight():
         print("3. Run away")
         choice = input("Enter your choice: ")
         if choice == "1":
-          try:
-            enemy_hp -= equipped_wepon.attack()
-          except:
-            print("You are not equipped with a weapon and cannot attack!")
+          damage = equipped_wepon.attack()
+          enemy_hp -= damage
         elif choice == "2":
           print("Which item do you want to use?")
           print("1. Health Potion")
@@ -113,6 +113,7 @@ def main():
   
 user_input = input("Wähle einen character aus")
 if user_input == "f":
+    equipped_wepon = sword.equip()  # Equip a weapon before fighting
     fight()
     print("kampf zu ende")
 if xp == 100:
