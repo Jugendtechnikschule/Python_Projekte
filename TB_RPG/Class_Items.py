@@ -35,10 +35,9 @@ class weapons(items):
     
     def unequip(self):
         global equipped_wepon
-
-        equipped_wepon = None
-
+        
         self.equipped = False
+
         print(f"You have unequipped {self.name}.")
     def attack(self):
         if self.equipped:

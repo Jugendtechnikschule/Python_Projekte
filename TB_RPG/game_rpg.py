@@ -1,7 +1,6 @@
 import random
-import time
 
-from Class_Items import items, weapons, equipped_wepon
+from Class_Items import items, weapons
 
 #variablen
 current_world_level = 1
@@ -18,6 +17,8 @@ enemy_mana = 100
 
 # waffen auswahl status
 
+equipped_wepon = hand = weapons("Hand", "Deine bloßen Hände", 1, 0, True)
+
 sword = weapons("Schwert", "Ein simples Schwert", random.randint(5, 15), 5)
 Langschwert = weapons("Langschwert", "Ein langes Schwert", random.randint(10, 20), 10)
 Schild = weapons("Schild", "Ein schweres Schild", random.randint(5, 10), 15)
@@ -27,10 +28,7 @@ Kurtzschwert = weapons("Kurtzschwert", "Ein kurzes Schwert", random.randint(5, 1
 Bogen = weapons("Bogen", "Ein langen Bogen", random.randint(5, 10), 8)
 Hammer = weapons("Hammer", "Ein schwerer Hammer", random.randint(10, 20), 12)
 Not_defind_Weapon = weapons("Not defind Weapon", "Ein nicht definierte Waffe")
-equipped_wepon = None
-print(Not_defind_Weapon.name)
-print(Not_defind_Weapon.damage)
-print(Hammer.equip())
+
 # fight status
 ran_away = False
 fighting = False
@@ -58,7 +56,7 @@ def level_up():
     print("HP:", hp)
     print("Mana:", mana)
 def fight():
-  global hp, mana, xp, enemy_hp, enemy_mana, ran_away, fighting, schleim_hp
+  global hp, mana, xp, enemy_hp, enemy_mana, ran_away, fighting, schleim_hp, equipped_wepon
   print("You are fighting an enemy!")
   while hp > 0 and enemy_hp > 0 and not ran_away:
     
@@ -108,12 +106,11 @@ def fight():
           earned_xp = 100
           xp += earned_xp
 def main():
-  global hp, mana, enemy_hp, enemy_mana, level, Langschwert, Schild, Mage, Tank, Dolch, Kurtzschwert, Bogen, xp, xp_level_up, fighting
+  global hp, mana, enemy_hp, enemy_mana, level, Langschwert, Schild, Mage, Tank, Dolch, Kurtzschwert, Bogen, xp, xp_level_up, fighting, equipped_wepon
   print("spiel beginnt")
   
 user_input = input("Wähle einen character aus")
 if user_input == "f":
-    equipped_wepon = sword.equip()  # Equip a weapon before fighting
     fight()
     print("kampf zu ende")
 if xp == 100:
