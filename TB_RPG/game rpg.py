@@ -1,7 +1,7 @@
 import random
 import time
 
-from Class_Wepons import weapons
+from Class_Items import items, weapons, equipped_wepon
 
 #variablen
 current_world_level = 1
@@ -18,41 +18,23 @@ enemy_mana = 100
 
 # waffen auswahl status
 
-sword = weapons("swort", random.randint(5, 15), 5)
-Langschwert = weapons("Langschwert", random.randint(10, 20), 10)
-#Schild = weapons("Schild", random.randint(5, 10), 15)
-Mage = weapons("Mage", random.randint(15, 25), 5)
-Dolch = weapons("Dolch", random.randint(5, 10), 3)
-Kurtzschwert = weapons("Kurtzschwert", random.randint(5, 10), 7)
-Bogen = weapons("Bogen", random.randint(5, 10), 8)
-Hammer = weapons("Hammer", random.randint(10, 20), 12)
-
-
+sword = weapons("Schwert", "Ein simples Schwert", random.randint(5, 15), 5)
+Langschwert = weapons("Langschwert", "Ein langes Schwert", random.randint(10, 20), 10)
+Schild = weapons("Schild", "Ein schweres Schild", random.randint(5, 10), 15)
+Mage = weapons("Mage", "Ein Zaubererstab", random.randint(15, 25), 5)
+Dolch = weapons("Dolch", "Ein kleiner Dolch", random.randint(5, 10), 3)
+Kurtzschwert = weapons("Kurtzschwert", "Ein kurzes Schwert", random.randint(5, 10), 7)
+Bogen = weapons("Bogen", "Ein langen Bogen", random.randint(5, 10), 8)
+Hammer = weapons("Hammer", "Ein schwerer Hammer", random.randint(10, 20), 12)
+Not_defind_Weapon = weapons("Not defind Weapon", "Ein nicht definierte Waffe", 10)
+equipped_wepon = Not_defind_Weapon.name
+print(Hammer.equip())
 # fight status
 ran_away = False
 fighting = False
 
+print("Link Start!")
 print("HP:",hp,"mana:",mana,"level:",level)
-
-def wald():
-  global user_input
-  print("Du bist im Wald")
-  print("Du siehst: Einen Baum, Einen Teich und einen schleim")
-  user_input = input("Wohin möchtest du gehen?")
-  print("baum, teich, schleim(Kampf)")
-  if user_input == "baum":
-    print("Du gehst zum Baum")
-  if user_input == "teich":
-    print("Du bist am Teich")
-  if user_input == "schleim":
-    print("Du kämpfst gegen einen schleim")
-    fight()
-def dorf():
-  print("Du bist im Dorf")
-def fluss():
-  print("Du bist am Fluss")
-def gebirge():
-  print("du bist im Gebirge")
 
 def enemy_hp_ramp_up():
   global enemy_hp
@@ -88,33 +70,10 @@ def fight():
         print("3. Run away")
         choice = input("Enter your choice: ")
         if choice == "1":
-          if Langschwert:
-            damage = random.randint(10, 20)
-            enemy_hp -= damage
-            print("You attacked the enemy with your Langschwert and dealt", damage, "damage!")
-          elif Schild:
-            damage = random.randint(5, 10)
-            enemy_hp -= damage
-            print("You attacked the enemy with your Schild and dealt", damage, "damage!")
-          elif Mage:
-            damage = random.randint(15, 25)
-            enemy_hp -= damage
-            mana -= 10
-            print("You attacked the enemy with your Mage and dealt", damage, "damage!")
-          elif Dolch:
-            damage = random.randint(5, 10)
-            enemy_hp -= damage
-            print("You attacked the enemy with your Dolch and dealt", damage, "damage!")
-          elif Kurtzschwert:
-            damage = random.randint(5, 10)
-            enemy_hp -= damage
-            print("You attacked the enemy with your Kurtzschwert and dealt", damage, "damage!")
-          elif Bogen:
-            damage = random.randint(5, 10)
-            enemy_hp -= damage
-            print("You attacked the enemy with your Bogen and dealt", damage, "damage!")
-          else:
-            print("You don't have a weapon equipped.")
+          try:
+            enemy_hp -= equipped_wepon.attack()
+          except:
+            print("You are not equipped with a weapon and cannot attack!")
         elif choice == "2":
           print("Which item do you want to use?")
           print("1. Health Potion")
@@ -151,59 +110,8 @@ def fight():
 def main():
   global hp, mana, enemy_hp, enemy_mana, level, Langschwert, Schild, Mage, Tank, Dolch, Kurtzschwert, Bogen, xp, xp_level_up, fighting
   print("spiel beginnt")
-  print("Wähle deine Waffe:")
-  print("Langschwert=1")
-  print("Schild=2")
-  print("Mage=3")
-  print("Dolch=5")
-  print("Kurtzschwert=6")
-  print("Bogen=7")
-  print("Hammer=8")
   
-  user_input = input("Wähle einen character aus")
-  if user_input == "1":
-    print("Du hast den Langschwert gewählt")
-    Langschwert = True
-  elif user_input == "2":
-    print("Du hast den Schild gewählt")
-    Schild = True
-  elif user_input == "3":
-    print("Du hast den Mage gewählt")
-    Mage = True
-  elif user_input == "4":
-    print("Du hast den Tank gewählt")
-    Dolch = True
-  elif user_input == "6":
-    print("Du hast den Kurtzschwert gewählt")
-    Kurtzschwert = True
-  elif user_input == "7":
-    print("Du hast den Bogen gewählt")
-    Bogen = True
-  elif user_input == "8":
-    print("Du hast den Hammer gewählt")
-  else:
-    print("ungültige eingabe")
-    
-
-print("Du bist auf einer wiese.In einer anderen welt")
-print("Du siehst: Einen Wald, Ein Dorf, Ein Fluss und Ein Gebirge")
-user_input = input("Wohin möchtest du gehen?")
-print("wald, Dorf, Fluss, Gebirge")
-
-if user_input == "Wald" or "wald":
-  print("Du gehst in den Wald")
-  wald()
-elif user_input == "Dorf" or "dorf":
-  print("Du gehst in das Dorf")
-  dorf()
-elif user_input == "Fluss" or "fluss":
-  print("Du gehst zum Fluss")
-  fluss()
-elif user_input == "Gebirge" or "gebirge":
-  print("Du gehst in das Gebirge")
-  gebirge()
-else:
-  print("ungültige eingabe")
+user_input = input("Wähle einen character aus")
 if user_input == "f":
     fight()
     print("kampf zu ende")
