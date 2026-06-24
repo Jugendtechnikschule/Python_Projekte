@@ -19,3 +19,16 @@ class enemy(mobs):
 
 
 
+d_test = {
+    "name": "Test Enemy",
+    "description": "This is a test enemy.",
+    "hp": 100,
+    "mana": 50,
+    "damage": 10,
+    "level": 1,
+    "loot": ["Test Item"]
+}
+
+
+
+
