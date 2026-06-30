@@ -14,6 +14,14 @@ inventory = []
 #enemy werte
 goblin = enemy("Goblin", "Ein kleiner, grüner Goblin")
 
+goblin_d = {
+    "name": "Goblin",
+    "description": "Ein kleiner, grüner Goblin",
+    "hp": 100,
+    "mana": 50,
+    "damage": 10,
+}
+
 enemy_hp = goblin.hp
 enemy_mana = goblin.mana
 enemy_damage = goblin.damage
@@ -21,7 +29,7 @@ enemy_damage = goblin.damage
 # waffen auswahl status
 
 equipped_wepon = hand = weapons("Hand", "Deine bloßen Hände", 1, 0, True)
- 
+
 sword = weapons("Schwert", "Ein simples Schwert", random.randint(5, 15), 5)
 Langschwert = weapons("Langschwert", "Ein langes Schwert", random.randint(10, 20), 10)
 Schild = weapons("Schild", "Ein schweres Schild", random.randint(5, 10), 15)
@@ -67,13 +75,14 @@ def level_up():
     print("You're now level", level)
     print("HP:", hp)
     print("Mana:", mana)
+
 def fight():
   global hp, mana, xp, enemy_hp, enemy_mana, enemy_damage, ran_away, fighting, equipped_wepon, enemy_list
-  print("You are fighting an enemy!")
-  while hp > 0 and enemy_hp > 0 and not ran_away:
+  print(f"You are fighting {len(enemy_list)} enemies!")
+  while hp > 0 and any(enemy.hp > 0 for enemy in enemy_list) and not ran_away:
     
         print("Your HP:", hp)
-        print("Enemy HP:", enemy_hp)
+        print("Enemy HP:", [enemy.hp for enemy in enemy_list])
         print("Your Mana:", mana)
         print("Enemy Mana: nich da sorry")
         print("What do you want to do?")
@@ -83,7 +92,10 @@ def fight():
         choice = input("Enter your choice:\n")
         if choice == "1":
           damage = equipped_wepon.attack()
-          enemy_hp -= damage
+          for enemy in enemy_list:
+            if enemy.hp > 0:
+              enemy.hp -= damage
+              break
         elif choice == "2":
           print("Which item do you want to use?")
           print("1. Health Potion")
@@ -106,22 +118,26 @@ def fight():
         elif choice == "3":
           print("You ran away from the battle.")
           ran_away = True
-        if enemy_hp > 0 and not ran_away:
+        for enemy in enemy_list:
+          if enemy.hp > 0 and not ran_away:
             enemy_damage = random.randint(5, 15)
             hp -= enemy_damage
-            print("The enemy attacked you and dealt", enemy_damage, "damage!")
+            print(f"The {enemy.name} attacked you and dealt", enemy_damage, "damage!")
         if hp <= 0:
             print("You died!")
-        elif enemy_hp <= 0:
+        elif all(enemy.hp <= 0 for enemy in enemy_list):
           print("You won the battle!")
-          print("You defeated the enemy!")
-          earned_xp = 100
+          print(f"You defeated {len(enemy_list)} enemies!")
+          earned_xp = 100 * len(enemy_list)
           xp += earned_xp
+          print(f"You earned {earned_xp} XP!")
    
 
 def main():
   global hp, mana, enemy_hp, enemy_mana, level, Langschwert, Schild, Mage, Tank, Dolch, Kurtzschwert, Bogen, xp, xp_level_up, fighting, equipped_wepon
   print("spiel beginnt")
+  create_enemy(5)
+  fight()
   
 user_input = input("Wähle(f, xp(+100), c(create enemy))")
 if user_input == "f":

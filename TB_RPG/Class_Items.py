@@ -36,3 +36,6 @@ class weapons(items):
         else:
             print("You are not equipped with a weapon.")
             return 0
+
+
+test_item = items("Test Item", "This is a test item.")
