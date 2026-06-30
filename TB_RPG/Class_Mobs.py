@@ -19,3 +19,10 @@ class enemy(mobs):
 
 
 
+test_d = {
+    "test_d": enemy("Test Enemy", "A test enemy for debugging purposes", hp=100, mana=100, damage=10, level=1, loot=[]),
+    "goblin": enemy( "Goblin", "A small, green humanoid creature that is often found in forests and caves.", hp=50, mana=30, damage=5, level=1, loot=["Gold Coin", "Rusty Dagger"])
+
+
+
+}
